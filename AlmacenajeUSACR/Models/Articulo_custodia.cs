@@ -32,7 +32,7 @@ namespace AlmacenajeUSACR.Models
         [DataType(DataType.Date)]
         public DateTime Fecha_ingreso { get; set; }
 
-        public bool Estado { get; set; }
+        public string Estado { get; set; } = "Pendiente retiro";
 
 
         [DataType(DataType.Date)]

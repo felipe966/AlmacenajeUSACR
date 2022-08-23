@@ -22,7 +22,7 @@ namespace AlmacenajeUSACR.Models
         [MaxLength(100)]
         public string Descripcion { get; set; }
 
-        public bool Estado { get; set; }
+        public string Estado { get; set; } = "Pendiente retiro";
 
 
         [DataType(DataType.Date)]

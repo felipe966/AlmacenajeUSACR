@@ -17,7 +17,7 @@ namespace AlmacenajeUSACR.Models
         [Required(ErrorMessage = "Campo requerido"), Range(100000000, 999999999)]
         [Display(Name = "Número de identificación")]
         [MaxLength(9)]
-        public int Numero_identificacion { get; set; }
+        public string Numero_identificacion { get; set; }
         [Required(ErrorMessage = "Campo requerido")]
         [Display(Name = "Fecha de  nacimiento")]
         [DataType(DataType.Date)]

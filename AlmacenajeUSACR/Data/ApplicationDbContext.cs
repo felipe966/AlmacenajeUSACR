@@ -14,7 +14,7 @@ namespace AlmacenajeUSACR.Data
         {
             modelBuilder.HasSequence<int>("Codigo_cliente").StartsAt(1000).IncrementsBy(1);
             modelBuilder.Entity<Cliente>().Property(o => o.Codigo_cliente).HasDefaultValueSql("NEXT VALUE FOR Codigo_cliente");
-            modelBuilder.HasSequence<int>("Codigo_transportista").StartsAt(1000).IncrementsBy(1);
+            modelBuilder.HasSequence<int>("Codigo_transportista").StartsAt(100).IncrementsBy(1);
             modelBuilder.Entity<Transportista>().Property(o => o.Codigo_transportista).HasDefaultValueSql("NEXT VALUE FOR Codigo_transportista");
         }
 
