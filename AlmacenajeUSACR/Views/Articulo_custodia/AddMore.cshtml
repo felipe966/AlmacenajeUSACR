@@ -1,0 +1,46 @@
+﻿
+
+@{
+    ViewData["Title"] = "Confirmacion";
+}
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <div class="container">
+          <div tabindex="-1" class="modal fade" id="myModal" role="dialog">
+            <div class="modal-dialog">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <h3>¿Desea continuar agregando más ingresos de articulos?</h3>
+                </div>
+                <div class="modal-footer">
+                  <button class="btn btn-primary" id="opt1" data-dismiss="modal">Si</button>
+                  <button class="btn btn-danger" id="opt2" data-dismiss="modal">No</button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+    </div>
+</div></br>
+
+
+@section Scripts {
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+    <script>
+    $(function(){
+        $('#myModal').modal("show");
+    });
+
+    $('#opt1').click(function () {
+      window.location.replace('create')
+    });
+
+    $('#opt2').click(function () {
+        window.location.replace('/home/index');
+    });
+    </script>
+    
+
+   
+}

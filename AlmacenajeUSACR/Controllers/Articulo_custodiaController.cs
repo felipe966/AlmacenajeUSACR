@@ -20,11 +20,19 @@ namespace AlmacenajeUSACR.Controllers
         }
 
         // GET: Articulo_custodia
-        public async Task<IActionResult> Index()
+        public  IActionResult Index()
         {
-              return _context.Articulo_custodia != null ? 
-                          View(await _context.Articulo_custodia.ToListAsync()) :
-                          Problem("Entity set 'ApplicationDbContext.Articulo_custodia'  is null.");
+            IEnumerable<Cliente> clientes = from c in _context.Cliente
+                            select c;
+            var articulos = from s in _context.Articulo_custodia
+                                                      select s;
+            articulos = articulos.OrderByDescending(a => a.Fecha_ingreso).ThenByDescending(a => a.Codigo_cliente);
+            ViewBag.Clientes = clientes.ToList();
+            return View(articulos);
+            //return _context.Articulo_custodia != null ?
+
+            //          View(await _context.Articulo_custodia.ToListAsync()) :
+            //          Problem("Entity set 'ApplicationDbContext.Articulo_custodia'  is null.");
         }
 
         // GET: Articulo_custodia/Details/5
@@ -62,12 +70,16 @@ namespace AlmacenajeUSACR.Controllers
             {
                 _context.Add(articulo_custodia);
                 await _context.SaveChangesAsync();
-                return RedirectToAction(nameof(Index));
+                return RedirectToAction("AddMore");
             }
             return View(articulo_custodia);
         }
 
-
+        // GET
+        public IActionResult AddMore()
+        {
+            return View();
+        }
         // GET
         public IActionResult Retiro()
         {

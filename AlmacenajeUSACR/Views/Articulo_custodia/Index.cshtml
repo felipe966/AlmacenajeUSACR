@@ -1,17 +1,23 @@
 ﻿@model IEnumerable<AlmacenajeUSACR.Models.Articulo_custodia>
 
 @{
-    ViewData["Title"] = "Index";
+    ViewData["Title"] = "Lista articulos";
 }
 
-<h1>Index</h1>
+<h1>Listado de todos los articulos</h1>
 
 <p>
-    <a asp-action="Create">Create New</a>
+    <a asp-action="Create">Ingresar articulo</a>
 </p>
 <table class="table">
     <thead>
         <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Estado)
+            </th>
+            <th>
+                Nombre del cliente
+            </th>
             <th>
                 @Html.DisplayNameFor(model => model.Codigo_cliente)
             </th>
@@ -33,9 +39,7 @@
             <th>
                 @Html.DisplayNameFor(model => model.Fecha_ingreso)
             </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Estado)
-            </th>
+            
             <th>
                 @Html.DisplayNameFor(model => model.Fecha_retiro)
             </th>
@@ -44,38 +48,61 @@
     </thead>
     <tbody>
 @foreach (var item in Model) {
-        <tr>
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Estado)
+                </td>
+                @{
+                    string nombre = "";
+                    foreach (var c in ViewBag.Clientes)
+                    {
+                        if (c.Codigo_cliente == item.Codigo_cliente)
+                        {
+                            nombre = c.Nombre_completo;
+                        }
+                    }
+                    <td>
+                        @nombre
+                    </td>
+                }
+                <td>
+                    @Html.DisplayFor(modelItem => item.Codigo_cliente)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Codigo_transportista)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.TrackingID)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Descripcion)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Peso)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Precio_articulo)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Fecha_ingreso)
+                </td>
+                @if (item.Estado == "Retirado")
+                {
+                   <td>
+                        @Html.DisplayFor(modelItem => item.Fecha_retiro)
+                    </td>
+                }
+                else
+                {
+                    <td>
+                        No aplica
+                    </td>
+                }
+            
             <td>
-                @Html.DisplayFor(modelItem => item.Codigo_cliente)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Codigo_transportista)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.TrackingID)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Descripcion)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Peso)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Precio_articulo)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Fecha_ingreso)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Estado)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Fecha_retiro)
-            </td>
-            <td>
-                <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
-                <a asp-action="Details" asp-route-id="@item.Id">Details</a> |
-                <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
+                <a asp-action="Edit" asp-route-id="@item.Id">Editar</a> |
+                <a asp-action="Details" asp-route-id="@item.Id">Detalles</a> |
+                <a asp-action="Delete" asp-route-id="@item.Id">Eliminar</a>
             </td>
         </tr>
 }

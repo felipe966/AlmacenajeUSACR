@@ -1,10 +1,10 @@
 ﻿@model AlmacenajeUSACR.Models.Transportista
 
 @{
-    ViewData["Title"] = "Create";
+    ViewData["Title"] = "REgistro transportista";
 }
 
-<h1>Create</h1>
+<h1>Registar de transportista</h1>
 
 <h4>Transportista</h4>
 <hr />
@@ -16,16 +16,16 @@
                 <label asp-for="Nombre_empresa" class="control-label"></label>
                 <input asp-for="Nombre_empresa" class="form-control" />
                 <span asp-validation-for="Nombre_empresa" class="text-danger"></span>
-            </div>
+            </div></br>
             <div class="form-group">
-                <input type="submit" value="Create" class="btn btn-primary" />
+                <input type="submit" value="Guardar" class="btn btn-primary" />
             </div>
         </form>
     </div>
-</div>
+</div></br>
 
 <div>
-    <a asp-action="Index">Back to List</a>
+    <a asp-controller="Home" asp-action="Index">Regresar</a>
 </div>
 
 @section Scripts {
