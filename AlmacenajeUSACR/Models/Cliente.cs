@@ -14,9 +14,9 @@ namespace AlmacenajeUSACR.Models
         [Display(Name = "Nombre completo")]
         [MaxLength(30)]
         public string Nombre_completo { get; set; }
-        [Required(ErrorMessage = "Campo requerido"), Range(100000000, 999999999)]
         [Display(Name = "Número de identificación")]
         [MaxLength(9)]
+        [RegularExpression(@"[0-9]{9}", ErrorMessage = "Numero de identificación invalido")]
         public string Numero_identificacion { get; set; }
         [Required(ErrorMessage = "Campo requerido")]
         [Display(Name = "Fecha de  nacimiento")]

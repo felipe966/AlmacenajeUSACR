@@ -18,10 +18,10 @@
                 <span asp-validation-for="Codigo_cliente" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="Codigo_transportista" class="control-label"></label>
-                <input asp-for="Codigo_transportista" class="form-control" />
+                <label class="control-label">Transportista</label></br>
+                @Html.DropDownList("Codigo_transportista",ViewBag.opcionesTrans, "Seleccione", new { required = "required" })
                 <span asp-validation-for="Codigo_transportista" class="text-danger"></span>
-            </div>
+            </div></br>
             <div class="form-group">
                 <label asp-for="TrackingID" class="control-label"></label>
                 <input asp-for="TrackingID" class="form-control" />

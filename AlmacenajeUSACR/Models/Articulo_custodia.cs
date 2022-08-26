@@ -13,7 +13,7 @@ namespace AlmacenajeUSACR.Models
         public int Codigo_cliente { get; set; }
         [Required(ErrorMessage = "Campo requerido"), Range(100, 999)]
         [Display(Name = "Código del transportista")]
-        public int Codigo_transportista { get; set; }
+        public int Codigo_transportista { get; set; } 
         [Required(ErrorMessage = "Campo requerido")]
         [MaxLength(18)]
         public string TrackingID { get; set; }

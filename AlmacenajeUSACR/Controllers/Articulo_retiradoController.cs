@@ -28,7 +28,12 @@ namespace AlmacenajeUSACR.Controllers
             ViewBag.end = end;
             var articulos = from s in _context.Articulo_retirado
                             select s;
-            articulos = articulos.Where(c => c.Fecha_retiro > start && c.Fecha_retiro < end).OrderByDescending(a => a.Fecha_retiro).ThenByDescending(a => a.Codigo_cliente);
+            if (end !=null || start != null)
+            {
+                articulos = articulos.Where(c => c.Fecha_retiro >= start && c.Fecha_retiro <= end).OrderByDescending(a => a.Fecha_retiro).ThenByDescending(a => a.Codigo_cliente);
+            }
+            
+           
             
             return View(articulos);
 

@@ -56,6 +56,13 @@ namespace AlmacenajeUSACR.Controllers
         // GET: Articulo_custodia/Create
         public IActionResult Create()
         {
+            IEnumerable<Transportista> transportistas = from s in _context.Transportista
+                            select s;
+            List<SelectListItem> opcionesTrans =new List<SelectListItem>();
+            foreach (Transportista i in transportistas){
+                opcionesTrans.Add(new SelectListItem { Text = i.Nombre_empresa, Value = i.Codigo_transportista.ToString() });
+            }
+            ViewBag.opcionesTrans = opcionesTrans;             
             return View();
         }
 
