@@ -1,17 +1,40 @@
 ﻿@model IEnumerable<AlmacenajeUSACR.Models.Articulo_retirado>
 
 @{
-    ViewData["Title"] = "Index";
+    ViewData["Title"] = "Reporte retiros";
 }
 
-<h1>Index</h1>
+<h1>Reporte de solicitudes retiro</h1>
 
 <p>
-    <a asp-action="Create">Create New</a>
-</p>
+    
+    @using (Html.BeginForm())
+{
+    <div class="form-horizontal">
+        <div class="row">
+          <div class="col-md-2">
+              Fecha de inicio:  @Html.TextBox("start", null, new { @class = "form-control datepicker" }) 
+
+          </div>
+          <div class="col-md-2">
+               Fecha final: @Html.TextBox("end", null, new { @class = "form-control datepicker" })</div>
+        </div>
+            
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Filtrar" class="btn btn-info" /> <span> </span>
+            </div>
+    </div>
+}
+</br><a asp-controller="Articulo_custodia" asp-action="Retiro">Nuevo retiro</a>
 <table class="table">
     <thead>
         <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Estado)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Fecha_retiro)
+            </th>
             <th>
                 @Html.DisplayNameFor(model => model.Codigo_cliente)
             </th>
@@ -24,18 +47,20 @@
             <th>
                 @Html.DisplayNameFor(model => model.Descripcion)
             </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Estado)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Fecha_retiro)
-            </th>
+            
+            
             <th></th>
         </tr>
     </thead>
     <tbody>
 @foreach (var item in Model) {
         <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Estado)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Fecha_retiro)
+            </td>
             <td>
                 @Html.DisplayFor(modelItem => item.Codigo_cliente)
             </td>
@@ -48,18 +73,29 @@
             <td>
                 @Html.DisplayFor(modelItem => item.Descripcion)
             </td>
+            
             <td>
-                @Html.DisplayFor(modelItem => item.Estado)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Fecha_retiro)
-            </td>
-            <td>
-                <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
-                <a asp-action="Details" asp-route-id="@item.Id">Details</a> |
-                <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
+                <a asp-action="Edit" asp-route-id="@item.Id">Editar</a> |
+                <a asp-action="Details" asp-route-id="@item.Id">Detalles</a> |
+                <a asp-action="Delete" asp-route-id="@item.Id">Eliminar</a>
             </td>
         </tr>
 }
     </tbody>
 </table>
+
+@section Scripts {
+<link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.13.2/themes/smoothness/jquery-ui.css">
+    <script src="https://cdn.jsdelivr.net/jquery.validation/1.16.0/jquery.validate.min.js"></script>
+    <script src="https://code.jquery.com/ui/1.13.2/jquery-ui.min.js" integrity="sha256-lSjKY0/srUM9BE3dPm+c4fBo1dky2v27Gdjm2uoZaL0=" crossorigin="anonymous"></script>
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $(".datepicker").datepicker({
+                dateFormat: "dd/mm/yy",
+                changemonth: true,
+                changeyear: true
+            });
+        });
+    </script>
+
+}

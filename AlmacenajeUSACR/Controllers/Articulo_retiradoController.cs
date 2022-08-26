@@ -20,11 +20,22 @@ namespace AlmacenajeUSACR.Controllers
         }
 
         // GET: Articulo_retirado
-        public async Task<IActionResult> Index()
+        public async Task<IActionResult> Index(DateTime? start, DateTime? end)
+
         {
-              return _context.Articulo_retirado != null ? 
-                          View(await _context.Articulo_retirado.ToListAsync()) :
-                          Problem("Entity set 'ApplicationDbContext.Articulo_retirado'  is null.");
+
+            ViewBag.start = start;
+            ViewBag.end = end;
+            var articulos = from s in _context.Articulo_retirado
+                            select s;
+            articulos = articulos.Where(c => c.Fecha_retiro > start && c.Fecha_retiro < end).OrderByDescending(a => a.Fecha_retiro).ThenByDescending(a => a.Codigo_cliente);
+            
+            return View(articulos);
+
+
+           // return _context.Articulo_retirado != null ? 
+             //             View(await _context.Articulo_retirado.ToListAsync()) :
+               //           Problem("Entity set 'ApplicationDbContext.Articulo_retirado'  is null.");
         }
 
         // GET: Articulo_retirado/Details/5
